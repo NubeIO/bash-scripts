@@ -65,7 +65,7 @@ fi
 # option to delete wires
 echo "remove wires [Y,n]"
 read input
-if [[ $input == "Y" || $input == "n" ]]; then
+if [[ $input == "Y" || $input == "y" ]]; then
         echo "removing wires dir"
         cd "/home/$user"
         sudo rm -r wires-build
@@ -77,7 +77,7 @@ fi
 # option to delete BBB-REST-API
 echo "remove BBB-REST-API [Y,n]"
 read input
-if [[ $input == "Y" || $input == "n" ]]; then
+if [[ $input == "Y" || $input == "y" ]]; then
         echo "removing bbb-py-rest dir"
         cd "/home/$user"
         sudo rm -r bbb-py-rest
