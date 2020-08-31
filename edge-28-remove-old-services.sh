@@ -63,3 +63,4 @@ echo "DISABLE/STOP/REMOVE: ${wires}"
 sudo systemctl stop ${wires}
 sudo systemctl disable ${wires}
 sudo rm /etc/systemd/system/${wires}
+
