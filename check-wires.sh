@@ -20,6 +20,12 @@ else
     echo "${RED}You need to install nodejs version 10${NC}"
 fi
 
+
+
+echo "${YELLOW}-----CHECK DISC USAGE------${NC}"
+df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }'
+
+
 echo "${YELLOW}-----CHECK FILES AND DIRs------${NC}"
 
 # Check dir /data
