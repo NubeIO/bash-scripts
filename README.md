@@ -1,5 +1,30 @@
 # bash-scripts
 
+
+## Wires start/stop/logs
+
+### arguments to pass in
+
+- start `start service`
+- stop `stop service`
+- restart `restart service`
+- log `log service` runs  `npm run pm2 logs`
+- log_all `log service` runs  `./node_modules/.bin/pm2 logs --lines 1000`
+- env `stop service`
+
+- for BBB
+`bash wires-service.sh env debian`
+
+- for pi
+`bash wires-service.sh env pi`
+
+```
+bash wires-service.sh env pi
+bash wires-service.sh `ACTION` `DEVICE_TYPE`
+bash wires-service.sh env pi  // will run this command as per device type `bash script.bash start -u=pi -hp=/home/pi`
+```
+
+
 ## check all existing dirs and files and nodejs
 - checks node js version
 - check if all the dirs exist. `/data`, `/data/rubix-wires` , `/data/rubix-wires/backup`

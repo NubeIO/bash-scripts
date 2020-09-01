@@ -21,10 +21,8 @@ else
 fi
 
 
-
 echo "${YELLOW}-----CHECK DISC USAGE------${NC}"
 df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }'
-
 
 echo "${YELLOW}-----CHECK FILES AND DIRs------${NC}"
 
