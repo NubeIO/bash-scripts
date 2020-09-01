@@ -57,7 +57,7 @@ if [ $1 == $user_deb ]; then
     if [ -d $REPO_DIR ]; then
         echo $DIR ": exists"
         echo "Add io-calibration.json file"
-        cp $HOME_DIR/bash-scripts/files/.env $DIR/io-calibration.json
+        cp $HOME_DIR/bash-scripts/files/io-calibration.json $DIR/io-calibration.json
         cat $DIR/io-calibration.json
     else
         echo "NOTE: Directory $DIR does not exists."
