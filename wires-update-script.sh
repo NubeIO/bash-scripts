@@ -2,14 +2,6 @@
 
 # example use for rubix-compute `sudo bash wires-update-scipt.sh pi`
 # example use for rubix-compute `sudo bash wires-update-scipt.sh debian`
-
-
-set -e
-if [ $UID != 0 ]; then
-    echo "ERROR: Operation not permitted. Forgot sudo?"
-    exit 1
-fi
-
 # Console colors
 DEFAULT="\033[0m"
 GREEN="\033[32m"
