@@ -100,7 +100,7 @@ echo "GIT/PULL: WIRES git pull"
 git pull
 
 # run update of wires
-echo "PM2/UPDATE: bash script.bash start -u=${user} -hp=/home/${user}"
+echo "PM2/UPDATE: bash script.bash start"
 cd "/home/$user"
 cd wires-builds/rubix-wires
 bash script.bash start -u=${user} -hp=/home/${user}

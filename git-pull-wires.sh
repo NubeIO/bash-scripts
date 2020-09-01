@@ -83,8 +83,3 @@ if [ $1 == $user_deb ]; then
     echo -e "START/ENABLE: bbb-py-rest "
 fi
 
-# run install of wires
-echo "PM2/UPDATE: bash script.bash start -u=${user} -hp=/home/${user}"
-cd "/home/$user"
-cd wires-builds/rubix-wires
-pwd
