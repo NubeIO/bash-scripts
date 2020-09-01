@@ -63,30 +63,70 @@ fi
 
 echo $DEFAULT
 
+LIB_SYSTEMD="/lib/systemd/system/"
+ETC_SYSTEMD="/etc/systemd/system/"
+echo $ETC_SYSTEMD "list services before"
+ls /etc/systemd/system/ 
+echo "---------------"
 # stop wires
-echo "STOP/DISABLE: nubeio-rubix-wires.service"
-sudo systemctl stop nubeio-rubix-wires.service
+SERVICE="nubeio-rubix-wires.service"
+FILE=$ETC_SYSTEMD$SERVICE
+if test -f "$FILE"; then
+    echo $FILE ": exists"
+    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
+    sudo systemctl stop $SERVICE
+else 
+    echo $FILE": dosnt exist"
+fi
+echo "---------------"
 
 echo -e "CHECK/MKDIR: createDirIfNotExist"
 createDirIfNotExist
+
+
+HOME_DIR="/home/$user"
+REPO_DIR="/home/$user/bbb-py-rest"
+
+# check to make sure host is debain or pi
+if [ $1 == $user_deb ]; then
+    echo "bbb-py-rest"
+    echo $REPO_DIR
+    if [ -d $REPO_DIR ]; then
+        echo $REPO_DIR ": exists"
+        cd $REPO_DIR
+        pwd
+        git pull
+    fi
+    cd $REPO_DIR
+    pwd
+    echo -e "UPDATE: bbb-py-rest"
+    bash setup.bash
+fi
 
 # make a backup of nodes.db
 echo "BACKUP/WIRES-DB: cp nodes.db"
 cd "/home/$user"
 cd wires-builds/rubix-wires
-
 wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
 echo ${wires_version}
-cp -p /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S)
+# backup wires nodes.db
+FILE="data/rubix-wires/nodes.db"
+if test -f "$FILE"; then
+    echo $FILE ": exists"
+    cp -p /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S)
+else 
+    echo $FILE": dosnt exist"
+fi
+echo "---------------"
 
 # git reset
-echo "GIT/RESET: git reset --hard origin/master"
+echo "GIT/RESET: WIRES git reset --hard origin/master"
 cd "/home/$user"
 cd wires-builds
 git reset --hard origin/master
 
 # git pull
-echo "GIT/PULL: git pull"
+echo "GIT/PULL: WIRES git pull"
 git pull
 
 # run update of wires

@@ -54,6 +54,12 @@ if [[ "$nv" = "v10" ]]; then
     echo "CHECK: nodejs version is == v10"
 else
     echo "CHECK: nodejs version is NOT == v10"
+    echo "INSTALL: install nodejs v10"
+    curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+    echo "UPDATE:  sudo apt update"
+    sudo apt update
+    echo "INSTALL: sudo apt install nodejs"
+    sudo apt install nodejs
     exit
 fi
 
@@ -75,6 +81,7 @@ else
     cd $HOME_DIR
     git clone --depth 1 https://github.com/NubeIO/wires-builds.git
     echo "Add .env file"
+    cat $HOME_DIR/bash-scripts/files/.env
     sudo cp $HOME_DIR/bash-scripts/files/.env /data/rubix-wires/.env
 fi
 
@@ -93,12 +100,13 @@ if [ $1 == $user_deb ]; then
         echo "Error: Directory $REPO_DIR does not exists."
         cd $HOME_DIR
         git clone --depth 1 https://github.com/NubeIO/bbb-py-rest.git
-        echo "Add .env file"
+        echo "Add io-calibration.json"
+        cat $HOME_DIR/bash-scripts/files/io-calibration.json
         sudo cp $HOME_DIR/bash-scripts/files/io-calibration.json /data/rubix-wires/io-calibration.json
     fi
-    cd bbb-py-rest
+    cd $REPO_DIR
     pwd
-    echo -e "START/ENABLE: bbb-py-rest & "
+    echo -e "START/ENABLE: bbb-py-rest "
 fi
 
 # run install of wires
