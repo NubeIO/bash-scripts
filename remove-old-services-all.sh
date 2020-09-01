@@ -188,6 +188,20 @@ else
 fi
 echo "---------------"
 
+# # THIS IS CUURENT BBB-REST nubeio-bbio.service
+SERVICE="nubeio-bbio.service"
+FILE=$ETC_SYSTEMD$SERVICE
+if test -f "$FILE"; then
+    echo $FILE ": exists"
+    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
+    sudo systemctl stop $SERVICE
+    sudo systemctl disable $SERVICE
+    sudo rm $FILE
+else 
+    echo $FILE": dosnt exist"
+fi
+echo "---------------"
+
 
 # # THIS IS CUURENT BBB-REST nubeio-bbio.service
 SERVICE="nubeio-rubix-wires.service"
