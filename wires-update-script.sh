@@ -3,9 +3,11 @@
 # example use for rubix-compute `sudo bash wires-update-scipt.sh pi`
 # example use for rubix-compute `sudo bash wires-update-scipt.sh debian`
 # Console colors
-DEFAULT="\033[0m"
-GREEN="\033[32m"
-RED="\033[31m"
+GREEN=$'\e[0;32m'
+RED=$'\e[0;31m'
+NC=$'\e[0m'
+PURPLE=$'\033[0;35m'
+YELLOW=$'\e[1;33m'
 
 USER=""
 USER_GROUP=""
@@ -34,26 +36,6 @@ if ! cd "/home/$user"; then
     exit
 fi
 
-# make backup dir
-createDirIfNotExist() {
-    # Create directory and change ownership if not exist
-    [[ -d ${DB_LOCATION} ]] || {
-        echo -e "${GREEN}Creating a location ${DB_LOCATION} and set ownership ${USER}:$(echo ${USER_GROUP} || echo ${USER})${DEFAULT}"
-        sudo mkdir ${DB_LOCATION}
-    }
-    sudo chown -R ${USER}:$(echo ${USER_GROUP} || echo ${USER}) ${DB_LOCATION}
-}
-
-# check nodejs version
-nv="v0"
-nv=$(node -v | cut -d "." -f1)
-if [[ "$nv" = "v10" ]]; then
-    echo "CHECK: nodejs version is == v10"
-else
-    echo "CHECK: nodejs version is NOT == v10"
-fi
-
-echo $DEFAULT
 
 LIB_SYSTEMD="/lib/systemd/system/"
 ETC_SYSTEMD="/etc/systemd/system/"
@@ -71,9 +53,6 @@ else
     echo $FILE": dosnt exist"
 fi
 echo "---------------"
-
-echo -e "CHECK/MKDIR: createDirIfNotExist"
-createDirIfNotExist
 
 
 HOME_DIR="/home/$user"

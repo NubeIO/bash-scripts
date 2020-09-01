@@ -39,32 +39,6 @@ fi
 wires_dir="/home/$user/wires-build"
 bbb_rest_dir="/home/$user/wires-build"
 
-# make backup dir
-createDirIfNotExist() {
-    # Create directory and change ownership if not exist
-    [[ -d ${DB_LOCATION} ]] || {
-        echo -e "${GREEN}Creating a location ${DB_LOCATION} and set ownership ${USER}:$(echo ${USER_GROUP} || echo ${USER})${DEFAULT}"
-        sudo mkdir -p "${DB_LOCATION}"
-        sudo chown -R ${USER}:$(echo ${USER_GROUP} || echo ${USER}) ${DB_LOCATION}
-    }
-
-}
-
-if [[ "$nv" = "v10" ]]; then
-    echo "CHECK: nodejs version is == v10"
-else
-    echo "CHECK: nodejs version is NOT == v10"
-    echo "INSTALL: install nodejs v10"
-    curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-    echo "UPDATE:  sudo apt update"
-    sudo apt update
-    echo "INSTALL: sudo apt install nodejs"
-    sudo apt install nodejs
-    exit
-fi
-
-echo -e "CHECK/MKDIR: add dir /data/rubix-wires"
-createDirIfNotExist
 
 HOME_DIR="/home/$user"
 REPO_DIR="/home/$user/wires-builds"

@@ -204,19 +204,6 @@ else
 fi
 echo "---------------"
 
-# # THIS IS CUURENT BBB-REST nubeio-bbio.service
-SERVICE="nubeio-rubix-wires.service"
-FILE=$ETC_SYSTEMD$SERVICE
-if test -f "$FILE"; then
-    echo $FILE ": exists"
-    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
-    sudo systemctl stop $SERVICE
-    sudo systemctl disable $SERVICE
-    sudo rm $FILE
-else 
-    echo $FILE": dosnt exist"
-fi
-echo "---------------"
 
 echo $LIB_SYSTEMD " list services after"
 ls /lib/systemd/system/ | grep -e node -e red -e bonescript -e dashboard -e nubeio -e pm2 -e rubix 
