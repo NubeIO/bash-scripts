@@ -5,9 +5,11 @@ user_deb="debian"
 user=""
 
 # Console colors
-DEFAULT="\033[0m"
-GREEN="\033[32m"
-RED="\033[31m"
+GREEN=$'\e[0;32m'
+RED=$'\e[0;31m'
+NC=$'\e[0m'
+PURPLE=$'\033[0;35m'
+YELLOW=$'\e[1;33m'
 
 USER=""
 USER_GROUP=""
@@ -54,9 +56,6 @@ else
     echo "NOTE: Directory $REPO_DIR does not exists."
     cd $HOME_DIR
     git clone --depth 1 https://github.com/NubeIO/wires-builds.git
-    echo "Add .env file"
-    cat $HOME_DIR/bash-scripts/files/.env
-    sudo cp $HOME_DIR/bash-scripts/files/.env /data/rubix-wires/.env
 fi
 
 REPO_DIR="/home/$user/bbb-py-rest"
@@ -74,9 +73,6 @@ if [ $1 == $user_deb ]; then
         echo "NOTE: Directory $REPO_DIR does not exists."
         cd $HOME_DIR
         git clone --depth 1 https://github.com/NubeIO/bbb-py-rest.git
-        echo "Add io-calibration.json"
-        cat $HOME_DIR/bash-scripts/files/io-calibration.json
-        sudo cp $HOME_DIR/bash-scripts/files/io-calibration.json /data/rubix-wires/io-calibration.json
     fi
     cd $REPO_DIR
     pwd
