@@ -176,6 +176,21 @@ else
 fi
 echo "---------------"
 
+# pm2-pi.service
+SERVICE="pm2-pi.service"
+FILE=$ETC_SYSTEMD$SERVICE
+if test -f "$FILE"; then
+    echo $FILE ": exists"
+    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
+    sudo systemctl stop $SERVICE
+    sudo systemctl disable $SERVICE
+    sudo rm $FILE
+else 
+    echo $FILE": dosnt exist"
+fi
+echo "---------------"
+
+
 # bbio.service
 SERVICE="bbio.service"
 FILE=$ETC_SYSTEMD$SERVICE
