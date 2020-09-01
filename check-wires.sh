@@ -56,7 +56,7 @@ echo "CHECK: FILE $FILE exists"
 if test -f "$FILE"; then
     echo "${GREEN} DOES exists ${NC}"
 else 
-    echo "${RED} You need to addin $FILE ${NC}"
+    echo "${RED} You need to addin if this is a EDGE-28 $FILE ${NC}"
 fi
 
 echo "${YELLOW}-----FINISH------${NC}"
