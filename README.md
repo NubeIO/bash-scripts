@@ -7,6 +7,22 @@
 
 `bash check-wires.sh` 
 
+## DELETE DIRs /data, /home/rubix-wires , /home/bbb-rest-py
+
+### delete the /data folder
+
+`sudo bash delete-dirs-data.sh debian`
+
+`sudo bash delete-dirs-data.sh pi`
+
+### delete the /home/rubix-wires , /home/bbb-rest-py
+for deleting the wires and bbb rest api
+
+`sudo bash delete-dirs-wires-bbb-rest.sh debian`
+
+`sudo bash delete-dirs-wires-bbb-rest.sh pi`
+
+
 ## Make DIRs /data, /data/rubix-wires , /data/rubix-wires/backup
 
 `bash make-dirs.sh debian`
