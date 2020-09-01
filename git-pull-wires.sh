@@ -51,7 +51,7 @@ if [ -d $REPO_DIR ]; then
     pwd
     git pull
 else
-    echo "Error: Directory $REPO_DIR does not exists."
+    echo "NOTE: Directory $REPO_DIR does not exists."
     cd $HOME_DIR
     git clone --depth 1 https://github.com/NubeIO/wires-builds.git
     echo "Add .env file"
@@ -71,7 +71,7 @@ if [ $1 == $user_deb ]; then
         pwd
         git pull
     else
-        echo "Error: Directory $REPO_DIR does not exists."
+        echo "NOTE: Directory $REPO_DIR does not exists."
         cd $HOME_DIR
         git clone --depth 1 https://github.com/NubeIO/bbb-py-rest.git
         echo "Add io-calibration.json"

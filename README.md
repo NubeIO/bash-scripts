@@ -7,6 +7,16 @@
 
 `bash check-wires.sh` 
 
+## Make DIRs /data, /data/rubix-wires , /data/rubix-wires/backup
+
+`bash make-dirs.sh debian`
+
+`bash make-dirs.sh pi`
+
+ then check again
+
+`bash check-wires.sh` 
+
 ## stop old services
 
 ### Stop/remove All
@@ -21,16 +31,15 @@ will install nodejs version 10
 
 `bash install-node-v10.sh` 
 
-## Make DIRs /data, /data/rubix-wires , /data/rubix-wires/backup
-
-`bash make-dirs.sh debian`
-
-`bash make-dirs.sh pi`
 
 ## git-pull-wires and bbb-rest
 `bash git-pull-wires.sh debian`
 
 `bash git-pull-wires.sh pi` 
+
+ then check again if all dirs and files are there
+ 
+`bash check-wires.sh` 
 
 ## update wires
 `bash wires-update-script.sh debian` 

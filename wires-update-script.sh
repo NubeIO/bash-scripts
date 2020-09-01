@@ -28,7 +28,6 @@ else
     echo -e "${RED} incorrect user passed in must be pi or debian"
     exit
 fi
-echo $user
 
 # check to make sure host is debain or pi
 if ! cd "/home/$user"; then
