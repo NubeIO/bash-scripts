@@ -17,6 +17,7 @@ if [[ "$nv" = "v10" ]]; then
     echo "${GREEN}NODE VERSION v10${NC}"
 else
     echo "${RED}NODE VERSION NOT!!! v10${NC}"
+    echo "${RED}You need to install nodejs version 10${NC}"
 fi
 
 echo "${YELLOW}-----CHECK FILES AND DIRs------${NC}"
@@ -27,7 +28,7 @@ echo "CHECK: DIR $DIR exists"
 if [ -d $DIR ]; then
     echo "${GREEN}DOES exists${NC}"
 else
-    echo "${RED}NOT!! exists${NC}"
+    echo "${RED} You need to addin $DIR ${NC}"
 
 fi
 
@@ -36,7 +37,7 @@ echo "CHECK: DIR $DIR exists"
 if [ -d $DIR ]; then
      echo "${GREEN}DOES exists${NC}"
 else
-    echo "${RED}NOT!! exists${NC}"
+  echo "${RED} You need to addin $DIR ${NC}"
 
 fi
 
@@ -46,16 +47,16 @@ echo "CHECK: FILE $FILE exists"
 if test -f "$FILE"; then
     echo "${GREEN} DOES exists ${NC}"
 else 
-    echo "${RED}NOT!! exists ${NC}"
+    echo "${RED} You need to addin $FILE ${NC}"
 fi
 
 # check file io-calibration.json
 FILE="/data/rubix-wires/io-calibration.json"
 echo "CHECK: FILE $FILE exists"
 if test -f "$FILE"; then
-     echo "${GREEN} DOES exists ${NC}"
+    echo "${GREEN} DOES exists ${NC}"
 else 
-    echo "${RED}NOT!! exists ${NC}"
+    echo "${RED} You need to addin $FILE ${NC}"
 fi
 
 echo "${YELLOW}-----FINISH------${NC}"
