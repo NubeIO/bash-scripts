@@ -30,6 +30,7 @@ for i in ${!repos[@]}; do
   echo ""
   echo "****** Getting latest for" ${dirs[$i]} "******"
   cd "${repos[$i]}"
+  git log --pretty=format:"%h - %an, %ar : %s"
   git pull
   echo "$i, ${dirs[$i]}"
   sudo rm -rf "${dirs[$i]}" && sudo mkdir "${dirs[$i]}"
