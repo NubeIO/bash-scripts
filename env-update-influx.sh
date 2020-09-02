@@ -38,7 +38,10 @@ while [ $# -gt 0 ]; do
         ;;
     *)
         printf "***************************\n"
-        printf "* Error: Invalid argument.*\n"
+        printf "* Error: Invalid argument *\n"
+        printf "***************************\n"
+        printf "*       EXAMPLE           *\n"
+        printf "bash env-update-influx.sh --protocal=http --host=0.0.0.0 --port=8086 --db=mydb --uname=admin --pass=admin --path=/data/rubix-wires/ --file=.env\n"
         printf "***************************\n"
         exit 1
         ;;
