@@ -9,10 +9,12 @@ DITTO_PASSWORD  = UyRZv8zPo
 #--------------Postgres config--------------------
 PG_BASEURL   = https://pgr.nube-io.com/histories
 #--------------Influx DB config-----------------------------------------------------
-INFLUX_DB_PROTOCOL              = http
-INFLUX_DB_HOST                  = 0.0.0.0
-INFLUX_DB_PORT                  = 8086
-INFLUX_DB_DB_NAME               = mydb
+INFLUX_DB_PROTOCOL=http
+INFLUX_DB_HOST=0.0.0.0
+INFLUX_DB_PORT=8086
+INFLUX_DB_DB_NAME=mydb
+INFLUX_DB_USERNAME=admin
+INFLUX_DB_PASSWORD=admin
 #--------------Edge 28 config-----------------------------------------------------
 EDGE_28_BASEURL                   = 0.0.0.0
 EDGE_28_PORT                      = 5000
