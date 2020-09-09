@@ -1,5 +1,37 @@
 # bash-scripts
 
+Quick start clean install on a PI
+
+1) add all `dir`
+`bash make-dirs.sh pi`
+
+if you want a clean start delete all `dirs`
+delete all exisiting `dirs` if you want a clean install
+- `/data
+- `HOME/wires-builds`
+
+2) check nodejs and disc is not full (must be nodejs version 10)
+`bash check-wires.sh` 
+
+3) remove old services
+
+`bash wires-update-script.sh pi`  
+
+4) git clone wires/bbb-rest
+
+`bash git-pull-wires-bbb-rest.sh pi`  
+
+5) add/ env file
+
+`bash add-files-env-io_cal.sh pi`
+
+6) add/update wires
+ 
+`bash wires-update-script.sh pi`  
+
+7) remove old services
+
+`bash wires-update-script.sh pi`  
 
 ## Wires start/stop/logs
 
