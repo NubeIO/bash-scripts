@@ -24,7 +24,6 @@ bash wires-service.sh `ACTION` `DEVICE_TYPE`
 bash wires-service.sh env pi  // will run this command as per device type `bash script.bash start -u=pi -hp=/home/pi`
 ```
 
-
 ## check all existing dirs and files and nodejs
 - checks node js version
 - check if all the dirs exist. `/data`, `/data/rubix-wires` , `/data/rubix-wires/backup`
@@ -38,14 +37,14 @@ bash wires-service.sh env pi  // will run this command as per device type `bash 
 
 `sudo bash delete-dirs-data.sh debian`
 
-`sudo bash delete-dirs-data.sh pi`
+`sudo bash ddelete-dirs-data.sh pi`
 
 ### delete the /home/rubix-wires , /home/bbb-rest-py
 for deleting the wires and bbb rest api
 
 `sudo bash delete-dirs-wires-bbb-rest.sh debian`
 
-`sudo bash delete-dirs-wires-bbb-rest.sh pi`
+`sudo bash delete-dirs-wires-bbb-rest.sh pi``
 
 
 ## Make DIRs /data, /data/rubix-wires , /data/rubix-wires/backup
@@ -63,9 +62,6 @@ for deleting the wires and bbb rest api
 ### Stop/remove All
 `sudo bash remove-old-services-all.sh` 
 
-### Stop/remove all but wires
-`sudo bash remove-old-services-not-wires.sh` 
-
 
 ## install nodejs
 will install nodejs version 10
@@ -74,9 +70,9 @@ will install nodejs version 10
 
 
 ## git-pull-wires and bbb-rest
-`bash git-pull-wires.sh debian`
+`bash git-pull-wires-bbb-rest.sh debian`
 
-`bash git-pull-wires.sh pi` 
+`bash git-pull-wires-bbb-rest.sh pi` 
 
  then check again if all dirs and files are there
  
@@ -86,4 +82,9 @@ will install nodejs version 10
 `bash wires-update-script.sh debian` 
 
 `bash wires-update-script.sh pi` 
+
+## add enviroment file
+`bash add-files-env-io_cal.sh debian`
+
+`bash add-files-env-io_cal.sh pi`
 
