@@ -31,11 +31,7 @@ delete all exisiting `dirs` if you want a clean install
 6) add/update wires
  
 `bash wires-update-script.sh pi`  
-
-7) remove old services
-
-`bash wires-update-script.sh pi`  
-
+ 
 8) reboot
 
 `sudo reboot`  
