@@ -18,7 +18,7 @@ delete all exisiting `dirs` if you want a clean install
 
 3) remove old services
 
-`sudo bash wires-update-script.sh pi`  
+`sudo bash remove-services.sh pi`  
 
 4) git clone wires/bbb-rest
 
