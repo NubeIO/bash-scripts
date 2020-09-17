@@ -103,4 +103,8 @@ git pull
 echo "PM2/UPDATE: bash script.bash start"
 cd "/home/$user"
 cd wires-builds/rubix-wires
-bash script.bash start -u=${user} -hp=/home/${user}
+
+# logs 50mb max and 10 days
+bash script.bash start -u=${user} -hp=/home/${user} -ilr=true
+# disable logging
+# bash script.bash start -u=${user} -hp=/home/${user} -l=false
