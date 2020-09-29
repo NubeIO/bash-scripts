@@ -36,22 +36,22 @@ if ! cd "/home/$user"; then
 fi
 
 
-LIB_SYSTEMD="/lib/systemd/system/"
-ETC_SYSTEMD="/etc/systemd/system/"
-echo $ETC_SYSTEMD "list services before"
-ls /etc/systemd/system/ 
-echo "---------------"
-# stop wires
-SERVICE="nubeio-rubix-wires.service"
-FILE=$ETC_SYSTEMD$SERVICE
-if test -f "$FILE"; then
-    echo $FILE ": exists"
-    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
-    sudo systemctl stop $SERVICE
-else 
-    echo $FILE": dosnt exist"
-fi
-echo "---------------"
+# LIB_SYSTEMD="/lib/systemd/system/"
+# ETC_SYSTEMD="/etc/systemd/system/"
+# echo $ETC_SYSTEMD "list services before"
+# ls /etc/systemd/system/ 
+# echo "---------------"
+# # stop wires
+# SERVICE="nubeio-rubix-wires.service"
+# FILE=$ETC_SYSTEMD$SERVICE
+# if test -f "$FILE"; then
+#     echo $FILE ": exists"
+#     echo "DISABLE/STOP/REMOVE: ${SERVICE}"
+#     sudo systemctl stop $SERVICE
+# else 
+#     echo $FILE": dosnt exist"
+# fi
+# echo "---------------"
 
 
 HOME_DIR="/home/$user"
