@@ -80,12 +80,15 @@ cd wires-builds/rubix-wires
 wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
 echo ${wires_version}
 # backup wires nodes.db
-FILE="data/rubix-wires/nodes.db"
+FILE="/data/rubix-wires/nodes.db"
 if test -f "$FILE"; then
     echo $FILE ": exists"
-    cp -p /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S)
-else 
-    echo $FILE": dosnt exist"
+    mkdir -p /data/rubix-wires/backup
+    cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
+    cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.latest.db
+    rm /data/rubix-wires/nodes.db
+else
+    echo $FILE": does not exist"
 fi
 echo "---------------"
 
