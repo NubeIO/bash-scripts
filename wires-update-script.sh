@@ -86,7 +86,7 @@ if test -f "$FILE"; then
     mkdir -p /data/rubix-wires/backup
     cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
     cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.latest.db
-    rm /data/rubix-wires/nodes.db
+#     rm /data/rubix-wires/nodes.db
 else
     echo $FILE": does not exist"
 fi
