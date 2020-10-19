@@ -1,113 +1,87 @@
 #!/bin/bash
 
-# example use for rubix-compute `sudo bash wires-update-scipt.sh pi`
-# example use for rubix-compute `sudo bash wires-update-scipt.sh debian`
-# Console colors
-GREEN=$'\e[0;32m'
-RED=$'\e[0;31m'
-NC=$'\e[0m'
-PURPLE=$'\033[0;35m'
-YELLOW=$'\e[1;33m'
+# Example when you want to disable logs:
+# sudo bash wires-update-scipt.sh pi false
 
-USER=""
-USER_GROUP=""
-DB_LOCATION="/data/rubix-wires/backup"
+# Example when you want to enable logs:
+# sudo bash wires-update-scipt.sh debian true
+
+# Console colors
+RED="\033[31m"
+DEFAULT="\033[0m"
+GREEN="\033[32m"
+
+DB_LOCATION="/data/rubix-wires"
+DB_BACKUP_LOCATION="/data/rubix-wires/backup"
+WIRES_LOCATION="wires-builds/rubix-wires"
 
 user_pi="pi"
 user_deb="debian"
+
 user=""
+log=true
 
 # make sure user passed in on running of script pi or debian
-if [ $1 == $user_pi ]; then
+if [ "$1" == $user_pi ]; then
     user=$user_pi
-    echo "user = $user_pi"
-elif [ $1 == $user_deb ]; then
+elif [ "$1" == $user_deb ]; then
     user=$user_deb
-    echo "user = $user"
 else
     echo -e "${RED} incorrect user passed in must be pi or debian"
     exit
 fi
 
+if [ "$2" == "false" ]; then
+    log=false
+fi
+
+HOME_DIR="/home/$user"
+
 # check to make sure host is debain or pi
-if ! cd "/home/$user"; then
-    echo -e "${RED} ERROR: make sure this is the correct device"
+if ! cd $HOME_DIR; then
+    echo -e "${RED}Error: make sure this is the correct device${DEFAULT}"
     exit
 fi
 
-
-LIB_SYSTEMD="/lib/systemd/system/"
-ETC_SYSTEMD="/etc/systemd/system/"
-echo $ETC_SYSTEMD "list services before"
-ls /etc/systemd/system/ 
-echo "---------------"
-# stop wires
-SERVICE="nubeio-rubix-wires.service"
-FILE=$ETC_SYSTEMD$SERVICE
-if test -f "$FILE"; then
-    echo $FILE ": exists"
-    echo "DISABLE/STOP/REMOVE: ${SERVICE}"
-    sudo systemctl stop $SERVICE
-else 
-    echo $FILE": dosnt exist"
-fi
-echo "---------------"
-
-
-HOME_DIR="/home/$user"
-REPO_DIR="/home/$user/bbb-py-rest"
+echo -e "${GREEN}Trying to start script with user: ${user} with install log rotate flag: ${ilr}${DEFAULT}"
 
 # check to make sure host is debain or pi
-if [ $1 == $user_deb ]; then
-    echo "bbb-py-rest"
-    echo $REPO_DIR
+if [ "$1" == $user_deb ]; then
+    REPO_DIR=${HOME_DIR}/bbb-py-rest
+    echo -e "${GREEN}Updating bbb-py-rest${DEFAULT}"
     if [ -d $REPO_DIR ]; then
-        echo $REPO_DIR ": exists"
+        echo -e "${GREEN}DIR: ${REPO_DIR} exists${DEFAULT}"
         cd $REPO_DIR
-        pwd
+        echo -e "${GREEN}Pulling repo bbb-py-rest${DEFAULT}"
         git pull
+        echo -e "${GREEN}Restarting repo bbb-py-rest${DEFAULT}"
+        bash setup.bash
     fi
-    cd $REPO_DIR
-    pwd
-    echo -e "UPDATE: bbb-py-rest"
-    bash setup.bash
 fi
 
 # make a backup of nodes.db
-echo "BACKUP/WIRES-DB: cp nodes.db"
-cd "/home/$user"
-cd wires-builds/rubix-wires
+echo -e "${GREEN}Backup nodes.db${DEFAULT}"
+cd ${HOME_DIR}/${WIRES_LOCATION}
 wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
-echo ${wires_version}
+echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
 # backup wires nodes.db
 FILE="/data/rubix-wires/nodes.db"
 if test -f "$FILE"; then
-    echo $FILE ": exists"
-    mkdir -p /data/rubix-wires/backup
-    cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
-    cp /data/rubix-wires/nodes.db /data/rubix-wires/backup/nodes.bak.latest.db
-#     rm /data/rubix-wires/nodes.db
+    echo "File: ${FILE} exists"
+    mkdir -p ${DB_BACKUP_LOCATION}
+    cp ${DB_LOCATION}/nodes.db ${DB_BACKUP_LOCATION}/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
 else
-    echo $FILE": does not exist"
+    echo "File: ${FILE} doesn't exists"
 fi
-echo "---------------"
 
 # git reset
-echo "GIT/RESET: WIRES git reset --hard origin/master"
-cd "/home/$user"
-cd wires-builds
+echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 git reset --hard origin/master
 
 # git pull
-echo "GIT/PULL: WIRES git pull"
+echo -e "${GREEN}Pulling changes from master${DEFAULT}"
 git pull
 
 # run update of wires
-echo "PM2/UPDATE: bash script.bash start"
-cd "/home/$user"
-cd wires-builds/rubix-wires
-
-# logs 50mb max and 10 days
-bash script.bash start -u=${user} -hp=/home/${user} -ilr=true
-# disable logging
-# bash script.bash start -u=${user} -hp=/home/${user} -l=false
+echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
+bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
