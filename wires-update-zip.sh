@@ -75,7 +75,7 @@ echo "${REPO_NAME}.zip"
 #     echo "File: ${FILE} doesn't exists"
 # fi
 echo -e "${HOME_DIR}/${WIRES_LOCATION}"
-echo -e "${REPO_NAME}-${LATEST_VERSION}/rubix-wires"
+echo -e "${REPO_NAME}/rubix-wires-${LATEST_VERSION}"
 
 cd ${HOME_DIR}/${WIRES_LOCATION}
 pwd
