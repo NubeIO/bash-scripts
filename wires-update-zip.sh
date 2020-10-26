@@ -80,6 +80,8 @@ echo -e "${REPO_NAME}/rubix-wires-${LATEST_VERSION}"
 cd ${HOME_DIR}
 rm -r wires-builds
 mkdir wires-builds
+pwd
+ls
 unzip ${REPO_NAME}.zip
 cd ${HOME_DIR}/${WIRES_LOCATION}
 pwd
