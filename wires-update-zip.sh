@@ -74,7 +74,7 @@ WIRES_ZIP=${REPO_NAME}.zip
 
 cd ${HOME_DIR}
 if [ -d "$WIRES_ZIP" ]; then rm -r $WIRES_ZIP; fi
-if [ -d "$REPO_NAME" ]; then rm -r $REPO_NAME; fi
+if [ -d "$REPO_NAME" ]; then sudo rm -r $REPO_NAME; fi
 # will return the version eg: 1.7.2
 LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${REPO_NAME}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
 echo "${WIRES_ZIP}"
