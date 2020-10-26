@@ -81,7 +81,7 @@ echo "${REPO_NAME}.zip"
 unzip ${REPO_NAME}.zip
 # unzip -d ${ZIP_DIR} ${REPO_NAME}.zip
 echo ${DIR}/${REPO_NAME}-${LATEST_VERSION}
-cd ${DIR}/${REPO_NAME}-${LATEST_VERSION}
+cd ${REPO_NAME}-${LATEST_VERSION}
 pwd
 ls
 
