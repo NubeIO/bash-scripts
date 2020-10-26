@@ -13,7 +13,7 @@ GREEN="\033[32m"
 
 DB_LOCATION="/data/rubix-wires"
 DB_BACKUP_LOCATION="/data/rubix-wires/backup"
-WIRES_LOCATION="wires-builds/rubix-wires"
+WIRES_LOCATION="wires-builds"
 
 user_pi="pi"
 user_deb="debian"
@@ -50,41 +50,47 @@ fi
 echo -e "${GREEN}Trying to start script with user: ${user} with install log rotate flag: ${ilr}${DEFAULT}"
 
 
-# make a backup of nodes.db
-echo -e "${GREEN}Backup nodes.db${DEFAULT}"
-cd ${HOME_DIR}/${WIRES_LOCATION}
-wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
-echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
-# backup wires nodes.db
-FILE="/data/rubix-wires/nodes.db"
-if test -f "$FILE"; then
-    echo "File: ${FILE} exists"
-    mkdir -p ${DB_BACKUP_LOCATION}
-    cp ${DB_LOCATION}/nodes.db ${DB_BACKUP_LOCATION}/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
-else
-    echo "File: ${FILE} doesn't exists"
-fi
-
-# git reset
-echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 
 
-# ZIP_DIR=/home/aidan/code/bash/bash-scripts
 
+# will return the version eg: 1.7.2
 LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${REPO_NAME}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
-a="${LATEST_VERSION}"
 echo "${REPO_NAME}.zip"
 # curl -L -o ${REPO_NAME}.zip https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.zip
 # curl -L -o ${REPO_NAME}.tar.gz https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.tar.gz
 
 
+# make a backup of nodes.db
+# echo -e "${GREEN}Backup nodes.db${DEFAULT}"
+# cd ${HOME_DIR}/${WIRES_LOCATION}/${LATEST_VERSION}
+# wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
+# echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
+# # backup wires nodes.db
+# FILE="/data/rubix-wires/nodes.db"
+# if test -f "$FILE"; then
+#     echo "File: ${FILE} exists"
+#     mkdir -p ${DB_BACKUP_LOCATION}
+#     cp ${DB_LOCATION}/nodes.db ${DB_BACKUP_LOCATION}/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
+# else
+#     echo "File: ${FILE} doesn't exists"
+# fi
+
+
+cd ${HOME_DIR}/${WIRES_LOCATION}
+pwd
+ls
+rm -r *
+ls
+echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
+
+
 unzip ${REPO_NAME}.zip
 # unzip -d ${ZIP_DIR} ${REPO_NAME}.zip
-echo ${DIR}/${REPO_NAME}-${LATEST_VERSION}
+echo ${REPO_NAME}-${LATEST_VERSION}
 cd ${REPO_NAME}-${LATEST_VERSION}/rubix-wires
 pwd
 ls
 
 # run update of wires
 echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
-# bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
+bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
