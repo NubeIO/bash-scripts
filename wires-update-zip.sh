@@ -53,27 +53,6 @@ echo -e "${GREEN}Trying to start script with user: ${user} with install log rota
 
 
 
-
-# curl -L -o ${REPO_NAME}.tar.gz https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.tar.gz
-
-
-# make a backup of nodes.db
-# echo -e "${GREEN}Backup nodes.db${DEFAULT}"
-# cd ${HOME_DIR}/${WIRES_LOCATION}/${LATEST_VERSION}
-# wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
-# echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
-# # backup wires nodes.db
-# FILE="/data/rubix-wires/nodes.db"
-# if test -f "$FILE"; then
-#     echo "File: ${FILE} exists"
-#     mkdir -p ${DB_BACKUP_LOCATION}
-#     cp ${DB_LOCATION}/nodes.db ${DB_BACKUP_LOCATION}/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
-# else
-#     echo "File: ${FILE} doesn't exists"
-# fi
-echo -e "${HOME_DIR}/${WIRES_LOCATION}"
-echo -e "${REPO_NAME}/rubix-wires-${LATEST_VERSION}"
-
 cd ${HOME_DIR}
 # f [ -d "$WORKING_DIR" ]; then rm -Rf $WORKING_DIR; fi
 rm -r wires-builds.zip
@@ -85,8 +64,13 @@ curl -L -o ${REPO_NAME}.zip https://github.com/${ORG_NAME}/${REPO_NAME}/archive/
 mkdir wires-builds
 pwd
 ls
-unzip ${REPO_NAME}.zip
+
+unzip -d ${HOME_DIR}/${WIRES_LOCATION} ${REPO_NAME}.zip
 cd ${HOME_DIR}/${WIRES_LOCATION}
+ls
+cd wires-builds-${LATEST_VERSION}/rubix-wires
+
+ls
 pwd
 ls
 # rm -r *
