@@ -53,7 +53,8 @@ echo -e "${GREEN}Trying to start script with user: ${user} with install log rota
 
 # make a backup of nodes.db
 echo -e "${GREEN}Backup nodes.db${DEFAULT}"
-cd ${HOME_DIR}/${WIRES_LOCATION}
+cd ${HOME_DIR}/wires-builds
+cd $(ls -d */|head -n 1) # takes you into the first dir
 cd $(ls -d */|head -n 1) # takes you into the first dir
 wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
 echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
