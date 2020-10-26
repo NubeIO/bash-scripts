@@ -80,7 +80,7 @@ echo -e "${REPO_NAME}-${LATEST_VERSION}/rubix-wires"
 cd ${HOME_DIR}/${WIRES_LOCATION}
 pwd
 ls
-rm -r *
+# rm -r *
 ls
 echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 
