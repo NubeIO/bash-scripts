@@ -85,10 +85,10 @@ ls
 echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 
 
-unzip ${REPO_NAME}.zip
+# unzip ${REPO_NAME}.zip
 # unzip -d ${ZIP_DIR} ${REPO_NAME}.zip
 echo ${REPO_NAME}-${LATEST_VERSION}
-cd ${REPO_NAME}-${LATEST_VERSION}/rubix-wires
+# cd ${REPO_NAME}-${LATEST_VERSION}/rubix-wires
 pwd
 ls
 
