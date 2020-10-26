@@ -77,6 +77,9 @@ echo "${REPO_NAME}.zip"
 echo -e "${HOME_DIR}/${WIRES_LOCATION}"
 echo -e "${REPO_NAME}/rubix-wires-${LATEST_VERSION}"
 
+cd ${HOME_DIR}
+rm -r wires-builds
+mkdir wires-builds
 cd ${HOME_DIR}/${WIRES_LOCATION}
 pwd
 ls
