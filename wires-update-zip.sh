@@ -87,4 +87,4 @@ ls
 
 # run update of wires
 echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
-# bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
+bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
