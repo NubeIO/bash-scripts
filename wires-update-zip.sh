@@ -74,7 +74,7 @@ echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${REPO_NAME}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
 a="${LATEST_VERSION}"
 echo "${REPO_NAME}.zip"
-curl -L -o ${REPO_NAME}.zip https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.zip
+# curl -L -o ${REPO_NAME}.zip https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.zip
 # curl -L -o ${REPO_NAME}.tar.gz https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.tar.gz
 
 
@@ -82,6 +82,8 @@ unzip ${REPO_NAME}.zip
 # unzip -d ${ZIP_DIR} ${REPO_NAME}.zip
 echo ${DIR}/${REPO_NAME}-${LATEST_VERSION}
 cd ${DIR}/${REPO_NAME}-${LATEST_VERSION}
+pwd
+ls
 
 # run update of wires
 echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
