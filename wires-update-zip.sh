@@ -80,6 +80,7 @@ echo -e "${REPO_NAME}/rubix-wires-${LATEST_VERSION}"
 cd ${HOME_DIR}
 rm -r wires-builds
 mkdir wires-builds
+unzip ${REPO_NAME}.zip
 cd ${HOME_DIR}/${WIRES_LOCATION}
 pwd
 ls
@@ -88,7 +89,7 @@ ls
 echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
 
 
-unzip ${REPO_NAME}.zip
+
 # unzip -d ${ZIP_DIR} ${REPO_NAME}.zip
 echo ${REPO_NAME}-${LATEST_VERSION}
 cd ${REPO_NAME}/rubix-wires-${LATEST_VERSION}
