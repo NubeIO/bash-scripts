@@ -93,6 +93,8 @@ pwd
 echo ${REPO_NAME}-${LATEST_VERSION}
 pwd
 ls
+cd ${HOME_DIR}
+if [ -d "$WIRES_ZIP" ]; then rm -r $WIRES_ZIP; fi
 # run update of wires
 echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
 bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
