@@ -53,6 +53,7 @@ echo -e "${GREEN}Trying to start script with user: ${user} with install log rota
 
 # make a backup of nodes.db
 echo -e "${GREEN}Backup nodes.db${DEFAULT}"
+
 cd ${HOME_DIR}/wires-builds
 cd $(ls -d */|head -n 1) # takes you into the first dir
 cd $(ls -d */|head -n 1) # takes you into the first dir
@@ -84,11 +85,12 @@ mkdir wires-builds
 pwd
 ls
 sleep 3
-unzip -d ${HOME_DIR}/${WIRES_LOCATION} ${REPO_NAME}.zip
-cd ${HOME_DIR}/${WIRES_LOCATION}
-ls
-cd wires-builds-${LATEST_VERSION}/rubix-wires
-ls
+unzip -d ${HOME_DIR}/${REPO_NAME} ${REPO_NAME}.zip
+cd ${HOME_DIR}
+cd ${REPO_NAME}
+cd wires-builds-${LATEST_VERSION}
+pwd
+cd ${REPO_NAME}
 pwd
 echo ${REPO_NAME}-${LATEST_VERSION}
 pwd
