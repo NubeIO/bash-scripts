@@ -22,8 +22,8 @@ user=""
 log=true
 
 ORG_NAME=NubeIO
-REPO_NAME=wires-builds
-
+WIRES_BUILDS=wires-builds
+RUBIX_WIRES=rubix-wires
 
 # make sure user passed in on running of script pi or debian
 if [ "$1" == $user_pi ]; then
@@ -71,28 +71,22 @@ fi
 
 
 
-WIRES_ZIP=${REPO_NAME}.zip
+WIRES_ZIP=${WIRES_BUILDS}.zip
 
 cd ${HOME_DIR}
 if [ -d "$WIRES_ZIP" ]; then rm -r $WIRES_ZIP; fi
-if [ -d "$REPO_NAME" ]; then sudo rm -r $REPO_NAME; fi
+if [ -d "$WIRES_BUILDS" ]; then sudo rm -r $WIRES_BUILDS; fi
 # will return the version eg: 1.7.2
-LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${REPO_NAME}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
+LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${WIRES_BUILDS}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
 echo "${WIRES_ZIP}"
-curl -L -o ${REPO_NAME}.zip https://github.com/${ORG_NAME}/${REPO_NAME}/archive/v${LATEST_VERSION}.zip
+curl -L -o ${WIRES_BUILDS}.zip https://github.com/${ORG_NAME}/${WIRES_BUILDS}/archive/v${LATEST_VERSION}.zip
 echo -e "${GREEN}make new dir mkdir wires-builds the unzip${DEFAULT}"
 mkdir wires-builds
 pwd
 ls
 sleep 3
-unzip -d ${HOME_DIR}/${REPO_NAME} ${REPO_NAME}.zip
-cd ${HOME_DIR}
-cd ${REPO_NAME}
-cd wires-builds-${LATEST_VERSION}
-pwd
-cd ${REPO_NAME}
-pwd
-echo ${REPO_NAME}-${LATEST_VERSION}
+unzip -d ${HOME_DIR}/${WIRES_BUILDS} ${WIRES_BUILDS}.zip
+cd ${HOME_DIR}/${WIRES_BUILDS}/${WIRES_BUILDS}-${LATEST_VERSION}/${RUBIX_WIRES}
 pwd
 ls
 # run update of wires
