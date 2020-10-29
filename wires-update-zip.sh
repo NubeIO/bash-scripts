@@ -73,10 +73,10 @@ fi
 WIRES_ZIP=${WIRES_BUILDS}.zip
 cd ${HOME_DIR}
 if [ -f $WIRES_ZIP ] ; then
-    rm $WIRES_ZIP
+    rm -r $WIRES_ZIP
 fi
 if [ -f $WIRES_BUILDS ] ; then
-    rm $WIRES_BUILDS
+    sudo rm -r $WIRES_BUILDS
 fi
 
 # will return the version eg: 1.7.2
