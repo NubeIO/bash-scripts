@@ -59,29 +59,3 @@ if [ "$1" == $user_deb ]; then
     fi
 fi
 
-# make a backup of nodes.db
-echo -e "${GREEN}Backup nodes.db${DEFAULT}"
-cd ${HOME_DIR}/${WIRES_LOCATION}
-wires_version=$(cat package.json | grep version | tr -d 'version' | tr -d '"' | tr -d ',' | tr -d ' ' | tr -d ':')
-echo -e "${GREEN}Wires-version before update: ${wires_version}${DEFAULT}"
-# backup wires nodes.db
-FILE="/data/rubix-wires/nodes.db"
-if test -f "$FILE"; then
-    echo "File: ${FILE} exists"
-    mkdir -p ${DB_BACKUP_LOCATION}
-    cp ${DB_LOCATION}/nodes.db ${DB_BACKUP_LOCATION}/nodes.bak.${wires_version}.$(date +%Y_%m_%d-%H:%M:%S).db
-else
-    echo "File: ${FILE} doesn't exists"
-fi
-
-# git reset
-echo -e "${GREEN}Resetting git hard to master${DEFAULT}"
-git reset --hard origin/master
-
-# git pull
-echo -e "${GREEN}Pulling changes from master${DEFAULT}"
-git pull
-
-# run update of wires
-echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
-bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
