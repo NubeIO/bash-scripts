@@ -70,12 +70,15 @@ else
 fi
 
 
-
 WIRES_ZIP=${WIRES_BUILDS}.zip
-
 cd ${HOME_DIR}
-if [ -d "$WIRES_ZIP" ]; then rm -r $WIRES_ZIP; fi
-if [ -d "$WIRES_BUILDS" ]; then sudo rm -r $WIRES_BUILDS; fi
+if [ -f $WIRES_ZIP ] ; then
+    rm $WIRES_ZIP
+fi
+if [ -f $WIRES_BUILDS ] ; then
+    rm $WIRES_BUILDS
+fi
+
 # will return the version eg: 1.7.2
 LATEST_VERSION=$(curl -s https://api.github.com/repos/${ORG_NAME}/${WIRES_BUILDS}/releases/latest | grep "tag_name" | cut -d'v' -f2 | cut -d'"' -f1)
 echo "${WIRES_ZIP}"
@@ -93,4 +96,6 @@ ls
 echo -e "${GREEN}Starting with: bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}${DEFAULT}"
 bash script.bash start -u=${user} -hp=${HOME_DIR} -l=${log}
 cd ${HOME_DIR}
-if [ -d "$WIRES_ZIP" ]; then rm -r $WIRES_ZIP; fi
+if [ -f $WIRES_ZIP ] ; then
+    rm $WIRES_ZIP
+fi
