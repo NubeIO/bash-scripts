@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # usage
-# python 1.py file_name
+# python fix-container.py wires_bac.json
 
 import json
 import sys
