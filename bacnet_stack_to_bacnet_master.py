@@ -2,6 +2,22 @@ import json
 
 import requests
 
+"""
+Makes an api call to get all the bacnet devices and updates the device bacnet_mac_address
+(Note there was a bug in bacnet-master and in the config file you need to set all the clean_names to false)
+
+run in bacnet-stack ./bin/bacwi
+make a text file to and copy paste from the console as per example below
+"""
+
+"""
+  1760305 0A:11:45:29:BA:C0    0     00                   1476
+  1760399 0A:11:45:99:BA:C0    0     00                   1476
+  1760436 0A:11:45:BA:BA:C0    0     00                   1476
+  1760193 0A:11:44:C5:BA:C0    0     00                   1476
+"""
+
+
 host = '4s.dyndns.ws'
 port = '1616'
 payload = {"username": "admin", "password": "N00BWires"}
